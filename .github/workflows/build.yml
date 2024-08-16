@@ -45,15 +45,18 @@ jobs:
             libgccjit:p
             sqlite3:p
             tree-sitter:p
-      
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        shell: msys2 {0}
-        run: echo $MSYSTEM
 
       # Runs a set of commands using the runners shell
       - name: Clone Emacs 31
         shell: msys2 {0}
         run: |
           git config --global core.autocrlf false
-          git clone https://github.com/emacs-mirror/emacs emacs-master
+          git clone --depth 1 https://github.com/emacs-mirror/emacs emacs-master
+
+      - name: Configure and Build
+        shell: msys2 {0}
+        run: |
+          cd emacs-build
+          ./autogen.sh
+          PKG_CONFIG_PATH=/ucrt64/lib/pkgconfig ./configure --without-imagemagick --without-dbus
+          make
