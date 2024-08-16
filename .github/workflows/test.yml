@@ -60,4 +60,4 @@ jobs:
           cd emacs-master
           ./autogen.sh
           PKG_CONFIG_PATH=/ucrt64/lib/pkgconfig ./configure --without-imagemagick --without-dbus
-          make
+          make -j$(nproc)
