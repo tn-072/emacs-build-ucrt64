@@ -41,6 +41,7 @@ jobs:
       - name: Show Environment Variables
         shell: msys2 {0}
         run: |
+          echo "NPROC is: " $(nproc)
           echo "PWD is: " $(pwd)
           echo "PATH is: " $PATH
           echo "PKG_CONFIG_PATH is: " $PKG_CONFIG_PATH
