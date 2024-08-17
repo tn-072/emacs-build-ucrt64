@@ -57,6 +57,5 @@ jobs:
       - name: Make
         shell: msys2 {0}
         run: |
-          pwd
           cd emacs-master
           make -j$(nproc)
