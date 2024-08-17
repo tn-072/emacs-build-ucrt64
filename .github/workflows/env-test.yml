@@ -1,4 +1,4 @@
-name: CI for Testing UCRT64 Environment
+name: CI for Testing MSYS2 Environments
 
 # Controls when the workflow will run
 on:
@@ -8,7 +8,9 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-
+    strategy:
+      matrix:
+        msys2env: [UCRT64, CLANG64, CLANGARM64]
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
@@ -16,7 +18,7 @@ jobs:
       # Setup MSYS2 UCRT64 and Install the Necessary Packages
       - uses: msys2/setup-msys2@v2
         with:
-          msystem: UCRT64
+          msystem:  ${{ matrix.msys2env }}
           install: base-devel git
           pacboy: >-
             toolchain:p
