@@ -1,4 +1,4 @@
-name: CI for Building Emacs 31 with UCRT64
+name: CI for Testing UCRT64 Environment
 
 # Controls when the workflow will run
 on:
@@ -38,25 +38,9 @@ jobs:
             sqlite3:p
             tree-sitter:p
       
-      - name: Clone Emacs 31
+      - name: Show Environment Variables
         shell: msys2 {0}
         run: |
-          git config --global core.autocrlf false
-          git clone --depth 1 https://github.com/emacs-mirror/emacs emacs-master
-      
-      - name: Autogen and Configure
-        shell: msys2 {0}
-        run: |
-          cd emacs-master
-          ./autogen.sh
-          PKG_CONFIG_PATH=/ucrt64/lib/pkgconfig ./configure --without-imagemagick --without-dbus
-      
-      - name: Make
-        shell: msys2 {0}
-        run: |
-          cd emacs-master
-          make -j$(nproc)
-      
-      - name: Install
-        shell: msys2 {0}
-        run: echo Hello
+          echo "PWD is: " $(pwd)
+          echo "PATH is: " $PATH
+          echo "PKG_CONFIG_PATH is: " $PKG_CONFIG_PATH
