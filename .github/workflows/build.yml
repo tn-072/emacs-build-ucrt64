@@ -47,9 +47,10 @@ jobs:
       - name: Autogen and Configure
         shell: msys2 {0}
         run: |
+          mkdir out
           cd emacs-master
           ./autogen.sh
-          ./configure --without-imagemagick --without-dbus
+          ./configure --prefix=$(realpath ../out) --without-imagemagick --without-dbus
       
       - name: Make
         shell: msys2 {0}
@@ -59,4 +60,8 @@ jobs:
       
       - name: Install
         shell: msys2 {0}
-        run: echo Hello
+        run: make install
+      
+      - name: Test
+        shell: msys2 {0}
+        run: ./out/bin/runemacs.exe --version
