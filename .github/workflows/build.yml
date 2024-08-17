@@ -60,7 +60,9 @@ jobs:
       
       - name: Install
         shell: msys2 {0}
-        run: make install
+        run: |
+          cd emacs-master
+          make install
       
       - name: Test
         shell: msys2 {0}
