@@ -8,10 +8,13 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    
     strategy:
       matrix:
         msys2env: [UCRT64, CLANG64, CLANGARM64]
+    
     steps:
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
@@ -36,9 +39,10 @@ jobs:
             libxml2:p
             zlib:p
             harfbuzz:p
-            libgccjit:p
             sqlite3:p
             tree-sitter:p
+            
+      # libgccjit:p is not available for CLANG64/CLANGARM64
       
       - name: Show Environment Variables
         shell: msys2 {0}
