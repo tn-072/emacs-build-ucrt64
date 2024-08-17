@@ -49,7 +49,7 @@ jobs:
         run: |
           cd emacs-master
           ./autogen.sh
-          PKG_CONFIG_PATH=/ucrt64/lib/pkgconfig ./configure --without-imagemagick --without-dbus
+          ./configure --without-imagemagick --without-dbus
       
       - name: Make
         shell: msys2 {0}
