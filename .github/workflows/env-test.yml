@@ -51,3 +51,12 @@ jobs:
           echo "PWD is: " $(pwd)
           echo "PATH is: " $PATH
           echo "PKG_CONFIG_PATH is: " $PKG_CONFIG_PATH
+      
+      - name: Test Realpath
+        shell: msys2 {0}
+        run: |
+          mkdir hello-emacs
+          mkdir hello-gcc
+          touch hello-emacs/emacs.text
+          cd hello-gcc
+          realpath ../hello-emacs/emacs.text
