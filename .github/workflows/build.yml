@@ -66,4 +66,4 @@ jobs:
       
       - name: Test
         shell: msys2 {0}
-        run: ./out/bin/runemacs.exe --version
+        run: ./out/bin/emacs.exe --version
