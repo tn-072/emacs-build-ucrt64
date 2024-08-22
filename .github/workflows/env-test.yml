@@ -51,6 +51,13 @@ jobs:
           echo "PWD is: " $(pwd)
           echo "PATH is: " $PATH
           echo "PKG_CONFIG_PATH is: " $PKG_CONFIG_PATH
+          echo "HOME is: " $HOME
+          echo "USERPROFILE is: " $USERPROFILE
+      
+      - name: Test Environment Variables
+        run: |
+          echo $env:HOME
+          echo $env:USERPROFILE
       
       - name: Test Realpath
         shell: msys2 {0}
